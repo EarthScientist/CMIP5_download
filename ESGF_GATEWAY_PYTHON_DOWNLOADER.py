@@ -38,6 +38,9 @@ for experiment in experiments:
 							local_file.write(response.read())
 							local_file.close()
 
+							# something needs to be written in here to call up the ESG Porxy Logon
+							# it will be some sort of system call to a java applet.
+
 							# this line will initiate the script and it should bring up a java applet for login.
 							os.system('bash /Users/snap/test.sh')
 
