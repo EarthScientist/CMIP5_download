@@ -1,4 +1,4 @@
-import os, sys, re, glob, urllib2
+import os, sys, re, glob, urllib2, time
 # http://esg-datanode.jpl.nasa.gov/esg-search/wget
 # http://esg-datanode.jpl.nasa.gov/esg-search/wget?offset=300&limit=100
 # http://pcmdi9.llnl.gov/esg-search/wget?variable=air_temperature&experiment=decadal2000&project=CMIP5
@@ -6,6 +6,12 @@ import os, sys, re, glob, urllib2
 
 # OPENID: https://www.earthsystemgrid.org/myopenid/EarthScientist
 # PWD: 7570483
+
+# this will collect the time variable.  only partially working at the moment
+# # # # # # # # # # # # # # # # # # # # #
+in_localtime=time.localtime(time.time())#
+in_localtime2=time.asctime()			#
+# # # # # # # # # # # # # # # # # # # # #
 
 # variable names
 experiments = ["historical","rcp26","rcp45","rcp60","rcp85"]
@@ -17,7 +23,7 @@ variables = ["tas","tasmin","tasmax","pr","psl","uas","vas","sfcWind","tauu","ta
 
 # this is the name or the list of names that the search will query on.  I am beginning with this one.
 base_url="http://pcmdi9.llnl.gov/esg-search/wget?"
-outPath="/workspace/Shared/Michael/CMIP5/wget"
+outPath="/workspace/Shared/Michael/CMIP5/WGET_DOWNLOAD_28Aug2012/wget"
 downPath="/workspace/Shared/Michael/CMIP5/WGET_DOWNLOAD_28Aug2012"
 
 response = urllib2.urlopen(base_url)
@@ -55,7 +61,7 @@ for experiment in experiments:
 							# this line will initiate the script and it should bring up a java applet for login.
 							#os.system('bash '+os.path.join(outPath,variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
 						except:
-							outFile1.write(d+"\n")
+							outFile1.write(new_url+"\n")
 							continue
 # close that wget log file
 outFile1.close()
@@ -71,10 +77,10 @@ else:
 
 
 # here we list the files that were downloaded in the previous loop.
-filelist=glob.glob(os.path.join(outPath,"/*.sh"))
+filelist=glob.glob(os.path.join(outPath,"*.sh"))
 for f in filelist:
 	# create a path variable that creates the output directory
-	pathVarOut=os.path.join(downPath,experiment,variable,ensemble)
+	pathVarOut=os.path.join(downPath,time_frequency,experiment,variable,ensemble)
 	
 	try:
 		if os.path.isdir(pathVarOut) == True:
@@ -86,7 +92,7 @@ for f in filelist:
 			os.system(". "+f)
 	except:
 		# log the filename that is giving errors
-		outFile2.write(d+"\n")
+		outFile2.write(f+"\n")
 		continue
 
 outFile2.close()
