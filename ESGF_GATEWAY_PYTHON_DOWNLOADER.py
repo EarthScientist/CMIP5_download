@@ -75,8 +75,8 @@ if "models" in locals():
 										os.makedirs(pathVarOut)
 										os.chdir(pathVarOut) # change this to the working dir that we want the data to be output to
 
-										# this line will initiate the script and it should bring up a java applet for login.
-										os.system('bash '+os.path.join(outPath,model+'_'+variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
+									# this line will initiate the script and it should bring up a java applet for login.
+									os.system('bash '+os.path.join(outPath,model+'_'+variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
 								except:
 									# log the issue
 									outFile.write(new_url+"\n")
@@ -115,8 +115,8 @@ else: # here we loop through the data where the user has commented out the model
 									os.makedirs(pathVarOut)
 									os.chdir(pathVarOut) # change this to the working dir that we want the data to be output to
 
-									# this line will initiate the script and it should bring up a java applet for login.
-									os.system('bash '+os.path.join(outPath,variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
+								# this line will initiate the script and it should bring up a java applet for login.
+								os.system('bash '+os.path.join(outPath,variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
 
 							except:
 								# log the issue
