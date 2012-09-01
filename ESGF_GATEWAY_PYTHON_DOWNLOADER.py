@@ -24,7 +24,7 @@ experiments = ["historical","rcp26","rcp45","rcp60","rcp85"]
 time_frequencies = ["day"]
 realms = ["atmos"] 
 CMOR_tables = ["day"] 
-ensembles = ["r1i1p1","r1i1p1"] 
+ensembles = ["r1i1p1","r2i1p1"] 
 variables = ["tas","tasmin","tasmax","pr","psl","uas","vas","sfcWind","tauu","tauv","ua","va","hur","hurs","hus","huss","rsds","clt","sit","sic"]
 
 # this is the name or the list of names that the search will query on.  I am beginning with this one.
