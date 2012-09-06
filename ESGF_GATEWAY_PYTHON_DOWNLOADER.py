@@ -1,4 +1,4 @@
-import os, sys, re, glob, urllib2, time
+import os, sys, re, glob, urllib2, time, pexpect
 
 # some examples of constructing the wget call to the portal
 # http://esg-datanode.jpl.nasa.gov/esg-search/wget
@@ -74,9 +74,16 @@ if "models" in locals():
 									else:
 										os.makedirs(pathVarOut)
 										os.chdir(pathVarOut) # change this to the working dir that we want the data to be output to
-
+	
+									child = pexpect.run('bash '+os.path.join(outPath,model+'_'+variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
+									child.logfile = sys.stdout
+									child.expect('Please give your OpenID (hit ENTER to accept default) [https://www.earthsystemgrid.org/myopenid/EarthScientist]?.*') #
+									child.sendline ('https://www.earthsystemgrid.org/myopenid/EarthScientist')
+									child.expect('MyProxy Password?')
+									child.sendline ('7570483')		    
+								    
 									# this line will initiate the script and it should bring up a java applet for login.
-									os.system('bash '+os.path.join(outPath,model+'_'+variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
+									#os.system('bash '+os.path.join(outPath,model+'_'+variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
 								except:
 									# log the issue
 									outFile.write(new_url+"\n")
