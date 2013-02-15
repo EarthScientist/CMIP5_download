@@ -1,0 +1,9 @@
+# config file 
+# this is a python list of the model(s) you are looking to download
+models = ["MRI-CGCM3","GISS-E2-R","GFDL-CM3","IPSL-CM5A-LR","CCSM4"]
+experiments = ["rcp45","rcp60","rcp85"]
+time_frequencies = ["day"]
+realms = ["atmos"]
+CMOR_tables = ["day"]
+ensembles = ["r1i1p1"]
+variables = ["uas","vas","tas","pr","psl"]
