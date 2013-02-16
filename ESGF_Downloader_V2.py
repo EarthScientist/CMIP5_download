@@ -23,8 +23,8 @@ variables = ["uas","vas","tas","pr","psl"]
 
 # these are some path variables specific to where you want the data to go
 # in your local file system
-wgetPath = "/big_storage/malindgren/wget/wget_day_nov2012"
-dataPath = "/big_storage/malindgren/data/data_day_nov2012"
+wgetPath = "/big_storage/malindgren/wget"
+dataPath = "/big_storage/malindgren/data"
 
 # this if/else loop is looking to see if the user has commented out the models line
 if "models" in locals():
@@ -36,7 +36,7 @@ if "models" in locals():
 						for ensemble in ensembles:
 							for variable in variables:
 								# here we create the new url name to generate the wget script needed to harvest the data
-								new_url=base_url+"model="+model+"&"+"experiment="+experiment+"&"+"time_frequency="+time_frequency+"&"+"realm="+realm+"&"+"cmor_table="+CMOR_table+"&"+"ensemble="+ensemble+"&"+"variable="+variable+"&"+"project=CMIP5"+"&"+"latest=true"
+								new_url=base_url+"&model="+model+"&"+"experiment="+experiment+"&"+"time_frequency="+time_frequency+"&"+"realm="+realm+"&"+"cmor_table="+CMOR_table+"&"+"ensemble="+ensemble+"&"+"variable="+variable+"&"+"project=CMIP5"+"&"+"latest=true"
 
 								response = urllib2.urlopen(new_url)
 								
@@ -58,7 +58,7 @@ if "models" in locals():
 										os.chdir(pathVarOut) 
 
 									# this line will initiate the script and it should bring up a java applet for login.
-									os.system('bash '+os.path.join(dataPath,model+'_'+variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
+									os.system('bash '+os.path.join(wgetPath,model+'_'+variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
 								except:
 									# log the issue
 									outFile.write(new_url+"\n")
@@ -94,10 +94,11 @@ else: # here we loop through the data where the user has commented out the model
 									os.chdir(pathVarOut) 
 
 								# this line will initiate the script and it should bring up a java applet for login.
-								os.system('bash '+os.path.join(downPath,variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
+								os.system('bash '+os.path.join(wgetPath,variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
 
 							except:
 								# log the issue
 								outFile.write(new_url+"\n")
 								# continue on through the loop
 								continue
+outFile.close()
