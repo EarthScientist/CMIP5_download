@@ -8,12 +8,19 @@ The variables that will need adjusting for the data the user wants to access is 
 # ALL OF THESE VARIABLES ARE PYTHON LISTS, even if it is a list of only one element.
 
 models = [list of the desired model names] >>example>> ["MRI-CGCM3","GISS-E2-R","GFDL-CM3","IPSL-CM5A-LR","CCSM4"]
+
 experiments = [list of the desired experiments] >>example>> ["rcp45","rcp60","rcp85"]
+
 time_frequencies = [list of the desired time frequencies] >>example>> ["day"]
+
 realms = [list of the desired realms] >>example>> ["atmos"]
+
 CMOR_tables = [list of the desired CMOR tables] >>example>> ["day"]
+
 ensembles = [list of the desired ensembles] >>example>> ["r1i1p1"]
+
 variables = [list of the desired variables] >>example>> ["uas","vas","tas","pr","psl"]
+
 
 these are some path variables specific to where you want the data to go in your local file system
 
