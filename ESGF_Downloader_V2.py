@@ -4,6 +4,19 @@
 # Version 2.0 - 02.15.2013
 # 	 Important to note that the server can only return 10,000 records in a single file so if you are trying to access a lot of data
 #    I would reccommend doing it in smaller subsets. i.e. dont download ALL MODELS at a time
+
+# some examples of constructing the wget call to the portal
+# http://esg-datanode.jpl.nasa.gov/esg-search/wget
+# http://esg-datanode.jpl.nasa.gov/esg-search/wget?offset=300&limit=100
+# http://pcmdi9.llnl.gov/esg-search/wget?variable=air_temperature&experiment=decadal2000&project=CMIP5
+# http://pcmdi9.llnl.gov/esg-search/wget?variable=air_temperature&experiment=decadal2000&project=CMIP5
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# this is the openID I use without my actual username/password	#
+# OPENID: https://www.earthsystemgrid.org/myopenid/<username> 	#
+# PWD: 															#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 ##########################################################################################################################################
 import os, sys, re, glob, urllib2, time
 
@@ -25,6 +38,11 @@ variables = ["uas","vas","tas","pr","psl"]
 # in your local file system
 wgetPath = "/big_storage/malindgren/wget"
 dataPath = "/big_storage/malindgren/data"
+
+t = time.asctime()
+t = t.split(" ")
+
+outFile = open(os.path.join(wgetPath,"LOG_FILE_ESGF_DOWNLOADER_"+t[1]+"_"+t[2]+"_"+t[4]+"_"+t[3].replace(":","")+".txt"),'a')
 
 # this if/else loop is looking to see if the user has commented out the models line
 if "models" in locals():
