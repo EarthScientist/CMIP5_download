@@ -39,6 +39,7 @@ variables = ["uas","vas","tas","pr","psl"]
 wgetPath = "/big_storage/malindgren/wget"
 dataPath = "/big_storage/malindgren/data"
 
+# some time work for the log file name
 t = time.asctime()
 t = t.split(" ")
 
