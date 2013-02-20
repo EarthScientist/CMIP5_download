@@ -106,7 +106,7 @@ else: # here we loop through the data where the user has commented out the model
 								local_file.close()
 
 								# create a path variable that creates the output directory
-								pathVarOut=os.path.join(downPath,time_frequency,experiment,variable,ensemble)
+								pathVarOut=os.path.join(dataPath,time_frequency,experiment,variable,ensemble)
 
 								if os.path.isdir(pathVarOut) == False:
 									os.makedirs(pathVarOut)
