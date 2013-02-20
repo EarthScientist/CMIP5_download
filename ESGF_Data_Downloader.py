@@ -74,7 +74,7 @@ if "models" in locals():
 
 									if os.path.isdir(pathVarOut) == False:
 										os.makedirs(pathVarOut)
-										os.chdir(pathVarOut) 
+									os.chdir(pathVarOut) 
 
 									# this line will initiate the script and it should bring up a java applet for login.
 									os.system('bash '+os.path.join(wgetPath,model+'_'+variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
@@ -110,7 +110,7 @@ else: # here we loop through the data where the user has commented out the model
 
 								if os.path.isdir(pathVarOut) == False:
 									os.makedirs(pathVarOut)
-									os.chdir(pathVarOut) 
+								os.chdir(pathVarOut) 
 
 								# this line will initiate the script and it should bring up a java applet for login.
 								os.system('bash '+os.path.join(wgetPath,variable+'_'+experiment+"_"+time_frequency+"_"+realm+'_'+CMOR_table+'_'+ensemble+'.sh'))
